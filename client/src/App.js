@@ -24,10 +24,11 @@ export default class App extends Component {
     socket.on('connect', ()=> {
       console.log('connected from client')
     })
-    socket.on('new message', (message, sender) => this.setState({messages:this.state.messages.concat([
+    socket.on('new message', (message, sender, date) => this.setState({messages:this.state.messages.concat([
       {
         message,
-        sender
+        sender,
+        date
       }
     ])}));
     this.setState({socket});

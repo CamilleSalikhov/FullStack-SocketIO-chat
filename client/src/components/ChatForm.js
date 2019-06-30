@@ -9,11 +9,14 @@ export default class ChatForm extends Component {
 
 
     handleClick = (e) => {
-        e.preventDefault()
+        e.preventDefault();
+        let today = new Date();
+         let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate() + '|' + today.getHours() + ':' + today.getMinutes();
         this.props.socket.emit('new_message', {
             message: this.state.input,
             room:this.props.currentRoom,
-            sender:this.props.user
+            sender:this.props.user,
+            date:date
         });
 
     }
@@ -26,6 +29,7 @@ export default class ChatForm extends Component {
         let messages = this.props.messages.map(e => 
         <div key = {uuid.v4()} style={{background:'lightGrey', borderStyle:'solid', borderColor:'grey', marginBottom:'5px'}} >
             <div style={{textAlign:'start'}} >{e.sender+':'}</div>
+            <div style={{textAlign:'start'}}>{e.date}</div>
         <div style={{textAlign:'start'}}>{e.message}</div>
         </div>)
         return (

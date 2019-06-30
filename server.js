@@ -62,7 +62,7 @@ io.sockets.on('connection', function(socket) {
     
     socket.on('new_message', function(messageObj) {
         console.log(`catched message with ${messageObj.message} in ${messageObj.room} by ${messageObj.sender}`)
-        io.sockets.in(`${messageObj.room}`).emit('new message', messageObj.message, messageObj.sender);
+        io.sockets.in(`${messageObj.room}`).emit('new message', messageObj.message, messageObj.sender, messageObj.date);
     
     })
 
